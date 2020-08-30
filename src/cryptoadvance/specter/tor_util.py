@@ -5,6 +5,9 @@ from .server import DATA_FOLDER
 
 def start_hidden_service(app):
     app.controller.reconnect()
+    if app.tor_password:
+        print("Logging on to TOR with password")
+        app.controller.authenticate(app.tor_password)
     key_path = os.path.abspath(
         os.path.expanduser(os.path.join(DATA_FOLDER, '.tor_service_key'))
     )

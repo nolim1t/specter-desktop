@@ -139,6 +139,9 @@ def server(daemon, stop, restart, force,
                 print(" * Warning: Cannot use Tor in debug mode. \
                       Starting in production mode instead.")
                 debug = False
+            if os.getenv('TORPASSWORD'):
+                print("Setting tor Password")
+                app.tor_password = os.getenv('TORPASSWORD')
             if tor or os.getenv('CONNECT_TOR') == 'True':
                 try:
                     app.tor_enabled = True
